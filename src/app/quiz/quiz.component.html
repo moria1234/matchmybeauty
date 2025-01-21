@@ -1,0 +1,6 @@
+<p>quiz works!</p>
+<h2>מה סוג המוצר שאת מחפשת?</h2>
+<select [(ngModel)]="productType">
+  <option *ngFor="let option of productOptions" [value]="option">{{ option }}</option>
+</select>
+<button routerLink="/product-questions">המשך ></button>
