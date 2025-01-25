@@ -1,5 +1,3 @@
-
-// יצירת רכיב פרופיל משתמש עם התחברות (profile.component.ts)
 import { Component } from '@angular/core';
 
 @Component({
@@ -9,6 +7,9 @@ import { Component } from '@angular/core';
 })
 export class ProfileComponent {
   isLoggedIn = false; // מצב התחברות
+  isRegistering = false; // מצב הרשמה
+
+  users: { username: string; password: string }[] = [];
 
   userProfile = {
     skinType: '',
@@ -23,11 +24,23 @@ export class ProfileComponent {
   eyeColors = ['כחול', 'ירוק', 'חום', 'אפור'];
 
   login(username: string, password: string) {
-    if (username === 'user' && password === 'password') { // בדיקה פשוטה
+    const user = this.users.find(user => user.username === username && user.password === password);
+    if (user) {
       this.isLoggedIn = true;
       alert('התחברת בהצלחה!');
     } else {
       alert('שם משתמש או סיסמה שגויים');
+    }
+  }
+
+  register(username: string, password: string) {
+    const userExists = this.users.some(user => user.username === username);
+    if (userExists) {
+      alert('שם המשתמש כבר קיים.');
+    } else {
+      this.users.push({ username, password });
+      alert('ההרשמה הושלמה בהצלחה! עכשיו תוכל להתחבר.');
+      this.isRegistering = false;
     }
   }
 

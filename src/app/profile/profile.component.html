@@ -1,4 +1,4 @@
-<div *ngIf="!isLoggedIn">
+<div *ngIf="!isLoggedIn && !isRegistering">
     <h2>התחברות</h2>
     <form (ngSubmit)="login(username.value, password.value)">
       <label>שם משתמש:</label>
@@ -9,6 +9,21 @@
   
       <button type="submit">התחבר</button>
     </form>
+    <button (click)="isRegistering = true">להרשמה</button>
+  </div>
+  
+  <div *ngIf="isRegistering">
+    <h2>הרשמה</h2>
+    <form (ngSubmit)="register(newUsername.value, newPassword.value)">
+      <label>שם משתמש חדש:</label>
+      <input type="text" #newUsername required />
+  
+      <label>סיסמה חדשה:</label>
+      <input type="password" #newPassword required />
+  
+      <button type="submit">הרשם</button>
+    </form>
+    <button (click)="isRegistering = false">ביטול</button>
   </div>
   
   <div *ngIf="isLoggedIn">
