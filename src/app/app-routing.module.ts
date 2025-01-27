@@ -1,15 +1,5 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-
-const routes: Routes = [];
-
-@NgModule({
-  imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
-})
-export class AppRoutingModule { }
-import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './home/home.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { ProductQuestionsComponent } from './product-questions/product-questions.component';
@@ -26,4 +16,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }
