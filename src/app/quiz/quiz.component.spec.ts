@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { FormsModule } from '@angular/forms';  // ייבוא של FormsModule לשימוש ב-ngModel
 import { QuizComponent } from './quiz.component';
 
 describe('QuizComponent', () => {
@@ -8,7 +8,8 @@ describe('QuizComponent', () => {
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [QuizComponent]
+      declarations: [QuizComponent],
+      imports: [FormsModule]  // הוספנו את FormsModule
     });
     fixture = TestBed.createComponent(QuizComponent);
     component = fixture.componentInstance;
@@ -17,5 +18,50 @@ describe('QuizComponent', () => {
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should initialize productType as an empty string', () => {
+    expect(component.productType).toBe('');
+  });
+
+  it('should initialize eyeColor as an empty string', () => {
+    expect(component.eyeColor).toBe('');
+  });
+
+  it('should initialize skinTone as an empty string', () => {
+    expect(component.skinTone).toBe('');
+  });
+
+  it('should initialize skinType as an empty string', () => {
+    expect(component.skinType).toBe('');
+  });
+
+  it('should initialize hairColor as an empty string', () => {
+    expect(component.hairColor).toBe('');
+  });
+
+  it('should have correct product options', () => {
+    expect(component.productOptions.length).toBeGreaterThan(0);
+    expect(component.productOptions).toContain('מייקאפ');
+  });
+
+  it('should have correct eye color options', () => {
+    expect(component.eyeColors.length).toBeGreaterThan(0);
+    expect(component.eyeColors).toContain('חום');
+  });
+
+  it('should have correct skin tone options', () => {
+    expect(component.skinTones.length).toBeGreaterThan(0);
+    expect(component.skinTones).toContain('בהיר');
+  });
+
+  it('should have correct skin type options', () => {
+    expect(component.skinTypes.length).toBeGreaterThan(0);
+    expect(component.skinTypes).toContain('יבש');
+  });
+
+  it('should have correct hair color options', () => {
+    expect(component.hairColors.length).toBeGreaterThan(0);
+    expect(component.hairColors).toContain('חום');
   });
 });

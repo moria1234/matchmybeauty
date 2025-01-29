@@ -11,4 +11,16 @@ export class QuizComponent {
     'מייקאפ', 'קונסילר', 'פודרה', 'ברונזר', 'סומק',
     'צלליות', 'מסקרה', 'מוצרי גבות', 'איילינר', 'שפתון'
   ];
+
+  eyeColor: string = '';
+  eyeColors: string[] = ['חום', 'ירוק', 'כחול', 'אפור', 'שחור'];
+
+  skinTone: string = '';
+  skinTones: string[] = ['בהיר', 'בינוני', 'כהה'];
+
+  skinType: string = '';
+  skinTypes: string[] = ['יבש', 'שמן', 'רגיל', 'מעורב'];
+
+  hairColor: string = '';
+  hairColors: string[] = ['חום', 'שחור', 'בלונד', 'אדום'];
 }

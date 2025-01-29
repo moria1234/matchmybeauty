@@ -3,4 +3,25 @@
 <select [(ngModel)]="productType">
   <option *ngFor="let option of productOptions" [value]="option">{{ option }}</option>
 </select>
+
+<h2>מה צבע העיניים שלך?</h2>
+<select [(ngModel)]="eyeColor">
+  <option *ngFor="let option of eyeColors" [value]="option">{{ option }}</option>
+</select>
+
+<h2>מה גוון העור שלך?</h2>
+<select [(ngModel)]="skinTone">
+  <option *ngFor="let option of skinTones" [value]="option">{{ option }}</option>
+</select>
+
+<h2>מה סוג העור שלך?</h2>
+<select [(ngModel)]="skinType">
+  <option *ngFor="let option of skinTypes" [value]="option">{{ option }}</option>
+</select>
+
+<h2>מה צבע השיער שלך?</h2>
+<select [(ngModel)]="hairColor">
+  <option *ngFor="let option of hairColors" [value]="option">{{ option }}</option>
+</select>
+
 <button routerLink="/product-questions">המשך ></button>
