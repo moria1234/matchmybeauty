@@ -1,27 +1,52 @@
-<p>quiz works!</p>
-<h2>מה סוג המוצר שאת מחפשת?</h2>
-<select [(ngModel)]="productType">
-  <option *ngFor="let option of productOptions" [value]="option">{{ option }}</option>
-</select>
+<div class="container">
+    <h2>Quiz</h2>
+    <form>
+        <!-- Product Type Selection -->
+        <div class="form-group">
+            <h3>Select Product Type:</h3>
+            <select [(ngModel)]="productType" name="productType" (ngModelChange)="onProductTypeChange()">
+                <option value="" disabled selected>Select a product</option>
+                <option *ngFor="let option of productOptions" [ngValue]="option">{{ option }}</option>
+            </select>
+        </div>
 
-<h2>מה צבע העיניים שלך?</h2>
-<select [(ngModel)]="eyeColor">
-  <option *ngFor="let option of eyeColors" [value]="option">{{ option }}</option>
-</select>
+        <!-- Eye Color Selection -->
+        <div class="form-group">
+            <h3>What is your eye color?</h3>
+            <select [(ngModel)]="eyeColor" name="eyeColor">
+                <option value="" disabled selected>Select eye color</option>
+                <option *ngFor="let option of eyeColors" [ngValue]="option">{{ option }}</option>
+            </select>
+        </div>
 
-<h2>מה גוון העור שלך?</h2>
-<select [(ngModel)]="skinTone">
-  <option *ngFor="let option of skinTones" [value]="option">{{ option }}</option>
-</select>
+        <!-- Skin Tone Selection -->
+        <div class="form-group">
+            <h3>What is your skin tone?</h3>
+            <select [(ngModel)]="skinTone" name="skinTone">
+                <option value="" disabled selected>Select skin tone</option>
+                <option *ngFor="let option of skinTones" [ngValue]="option">{{ option }}</option>
+            </select>
+        </div>
 
-<h2>מה סוג העור שלך?</h2>
-<select [(ngModel)]="skinType">
-  <option *ngFor="let option of skinTypes" [value]="option">{{ option }}</option>
-</select>
+        <!-- Skin Type Selection -->
+        <div class="form-group">
+            <h3>What is your skin type?</h3>
+            <select [(ngModel)]="skinType" name="skinType">
+                <option value="" disabled selected>Select skin type</option>
+                <option *ngFor="let option of skinTypes" [ngValue]="option">{{ option }}</option>
+            </select>
+        </div>
 
-<h2>מה צבע השיער שלך?</h2>
-<select [(ngModel)]="hairColor">
-  <option *ngFor="let option of hairColors" [value]="option">{{ option }}</option>
-</select>
+        <!-- Hair Color Selection -->
+        <div class="form-group">
+            <h3>What is your hair color?</h3>
+            <select [(ngModel)]="hairColor" name="hairColor">
+                <option value="" disabled selected>Select hair color</option>
+                <option *ngFor="let option of hairColors" [ngValue]="option">{{ option }}</option>
+            </select>
+        </div>
 
-<button routerLink="/product-questions">המשך ></button>
+        <!-- Submit Button -->
+        <button type="button" routerLink="/product-questions">Continue ></button>
+    </form>
+</div>
