@@ -1,30 +1,19 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // נדרש עבור ngModel
-
+import { FormsModule } from '@angular/forms';
+import { RouterModule, Routes } from '@angular/router';
 import { AppComponent } from './app.component';
-import { HomeComponent } from './home/home.component';
-import { QuizComponent } from './quiz/quiz.component';
 import { ProductQuestionsComponent } from './product-questions/product-questions.component';
-import { ResultsComponent } from './results/results.component';
-import { ProfileComponent } from './profile/profile.component';
-import { AppRoutingModule } from './app-routing.module';
+import { ProductService } from './services/product.service';
 
+const appRoutes: Routes = [
+  { path: '', component: ProductQuestionsComponent }, // Default route
+  // Add other routes as needed
+];
 @NgModule({
-  declarations: [
-    AppComponent,
-    HomeComponent,
-    QuizComponent,
-    ProductQuestionsComponent,
-    ResultsComponent,
-    ProfileComponent
-  ],
-  imports: [
-    BrowserModule,
-    AppRoutingModule,
-    FormsModule
-  ],
-  providers: [],
+  declarations: [AppComponent, ProductQuestionsComponent],
+  imports: [BrowserModule, FormsModule, RouterModule.forRoot(appRoutes),],
+  providers: [ProductService],
   bootstrap: [AppComponent]
 })
 export class AppModule {}
