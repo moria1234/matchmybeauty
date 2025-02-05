@@ -1,0 +1,68 @@
+/* עיצוב כללי לעמוד */
+:host {
+    display: block;
+    font-family: Arial, sans-serif;
+    background-color: #f9f9f9;
+    padding: 20px;
+  }
+  
+  /* כותרות השאלות */
+  h2 {
+    font-size: 20px;
+    font-weight: bold;
+    color: #333;
+    margin-bottom: 10px;
+  }
+  
+  /* עיצוב עבור תיבות הבחירה */
+  select {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #fff;
+    box-sizing: border-box; /* כדי ש-padding לא יגרום לעיוות במידות */
+  }
+  
+  /* תיבת הבחירה כאשר לא נבחרה אפשרות */
+  select:focus {
+    border-color: #5c9dd3;
+    outline: none;
+  }
+  
+  /* עיצוב לכפתור */
+  button {
+    background-color: #5c9dd3;
+    color: white;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 5px;
+    font-size: 16px;
+    cursor: pointer;
+    width: 100%;
+    transition: background-color 0.3s ease;
+  }
+  
+  /* כאשר הכפתור עובר עליו עם העכבר */
+  button:hover {
+    background-color: #4a89c2;
+  }
+  
+  /* חלל בין השאלות */
+  .quiz-question {
+    margin-bottom: 20px;
+  }
+  
+  /* שדה הבחירה האחרון */
+  button {
+    margin-top: 20px;
+  }
+  
+  /* תוספות לעיצוב כללי - אפשרות לסטייל נוספים אם תרצה בעתיד */
+  body {
+    margin: 0;
+    padding: 0;
+  }
+  

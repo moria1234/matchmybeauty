@@ -1,0 +1,48 @@
+.home {
+  text-align: center;
+  margin-top: 50px;
+  font-family: 'Arial', sans-serif;
+}
+
+p {
+  font-size: 18px;
+  color: #555;
+}
+
+h1 {
+  font-size: 32px;
+  font-weight: bold;
+  color: #333;
+  margin-top: 20px;
+  margin-bottom: 30px;
+}
+
+/* עיצוב לכפתור */
+button.start-button, button.profile-button {
+  padding: 12px 24px;
+  font-size: 18px;
+  font-weight: bold;
+  cursor: pointer;
+  background-color: #4CAF50; /* צבע ירוק */
+  color: white;
+  border: none;
+  border-radius: 8px;
+  transition: background-color 0.3s, transform 0.2s;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin: 10px;
+}
+
+button.start-button:hover, button.profile-button:hover {
+  background-color: #45a049; /* שינוי צבע בזמן ריחוף */
+  transform: scale(1.05); /* שינוי גודל הכפתור כשהעכבר מרחף */
+}
+
+button.start-button:focus, button.profile-button:focus {
+  outline: none; /* להסיר את קו המיקוד */
+  box-shadow: 0 0 0 2px #80e27e; /* להוסיף הילה ירוקה כאשר הכפתור מקבל פוקוס */
+}
+
+/* מוסיפים רווחים סביב הכפתור */
+button {
+  margin-top: 30px;
+}
