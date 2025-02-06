@@ -7,20 +7,28 @@
   <link rel="stylesheet" href="results.component.css">
 </head>
 <body>
+  <header>
+    <a [routerLink]="['/']">
+        <img src="logo.png" alt="Logo" class="logo">
+    </a>
+  </header>
+  <main>
     <div class="container">
-        <h1>Your Personalized Makeup Matches</h1>
-        <p>Here are the top 5 products just for you!</p>
-    
-        <div class="results-container">
-            <div *ngFor="let product of products" class="result-item">
-                <img [src]="product.image" [alt]="product.name" class="result-image">
-                <h3 class="result-title">{{ product.name }}</h3>
-                <p class="result-price">{{ product.price }}</p>
-                <a [href]="product.link" target="_blank" class="buy-button">Buy Now</a>
-            </div>
-        </div>
-    </div>
-  <script type="module" src="results.component.ts"></script>
+      <h1>Your Personalized Makeup Matches</h1>
+      <p>Here are the top 5 products just for you!</p>
+  
+      <div class="results-container">
+          <div *ngFor="let product of products" class="result-item">
+              <img [src]="product.image" [alt]="product.name" class="result-image">
+              <h3 class="result-title">{{ product.name }}</h3>
+              <p class="result-price">{{ product.price }}</p>
+              <a [href]="product.link" target="_blank" class="buy-button">Buy Now</a>
+          </div>
+      </div>
+  </div>
+  <button (click)="goBackToQuiz()">Back to Quiz</button>
+
+  </main>
 
 </body>
 </html>

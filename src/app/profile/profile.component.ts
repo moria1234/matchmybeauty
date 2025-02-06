@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 @Component({
   selector: 'app-profile',
@@ -47,5 +49,13 @@ export class ProfileComponent {
   saveProfile() {
     console.log('פרופיל נשמר:', this.userProfile);
     alert('הפרופיל נשמר בהצלחה!');
+  }
+
+  constructor(private router: Router) {}
+
+  
+
+  goToQuiz(): void {
+    this.router.navigate(['/quiz']);  // Navigate to quiz page directly if needed
   }
 }
