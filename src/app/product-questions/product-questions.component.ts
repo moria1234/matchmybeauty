@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service';
+import { Router } from '@angular/router'; // Import Router
 
 const commonQuestions = {
   finish: {
@@ -38,7 +39,7 @@ export class ProductQuestionsComponent implements OnInit {
   questions: { text: string; options?: string[] }[] = [];
   answers: string[] = [];
 
-  constructor(private productService: ProductService) {}
+  constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
     // Get the selected product from the service
@@ -77,6 +78,6 @@ export class ProductQuestionsComponent implements OnInit {
     // Log and reset answers
     console.log('Answers:', this.answers);
     alert('Your answers have been submitted successfully!');
-    this.answers = Array(this.questions.length).fill(''); // Reset answers
+    this.router.navigate(['/results']);
   }
 }
