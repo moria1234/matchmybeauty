@@ -22,13 +22,14 @@ export class QuizComponent {
   skinTypes: string[] = ['Dry', 'Oily', 'Normal', 'Combination'];
 
   hairColor: string = '';
-  hairColors: string[] = ['Brown', 'Black', 'Blonde', 'Red'];
+  hairColors: string[] = ['Brown', 'Black', 'Blonde', 'Orange'];
 
   // Inject ProductService
   constructor(private productService: ProductService) {}
 
   // Method to handle product type change
   onProductTypeChange(): void {
+
     console.log('Selected Product Type:', this.productType);
     this.productService.setSelectedProduct(this.productType); // Save selected product to the service
   }
