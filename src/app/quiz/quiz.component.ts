@@ -22,7 +22,7 @@ export class QuizComponent {
   skinTypes: string[] = ['Dry', 'Oily', 'Normal', 'Combination'];
 
   hairColor: string = '';
-  hairColors: string[] = ['Brown', 'Black', 'Blonde', 'Orange'];
+  hairColors: string[] = ['Brown', 'Black', 'Blonde', 'Red'];
 
   // Inject ProductService
   constructor(private productService: ProductService) {}
