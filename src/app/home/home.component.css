@@ -46,3 +46,10 @@ button.start-button:focus, button.profile-button:focus {
 button {
   margin-top: 30px;
 }
+.logo {
+  width: 50px; /* Adjust size */
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}

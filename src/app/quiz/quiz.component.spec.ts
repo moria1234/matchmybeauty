@@ -42,26 +42,26 @@ describe('QuizComponent', () => {
 
   it('should have correct product options', () => {
     expect(component.productOptions.length).toBeGreaterThan(0);
-    expect(component.productOptions).toContain('מייקאפ');
+    expect(component.productOptions).toContain('Makeup');
   });
 
   it('should have correct eye color options', () => {
     expect(component.eyeColors.length).toBeGreaterThan(0);
-    expect(component.eyeColors).toContain('חום');
+    expect(component.eyeColors).toContain('Brown');
   });
 
   it('should have correct skin tone options', () => {
     expect(component.skinTones.length).toBeGreaterThan(0);
-    expect(component.skinTones).toContain('בהיר');
+    expect(component.skinTones).toContain('Light');
   });
 
   it('should have correct skin type options', () => {
     expect(component.skinTypes.length).toBeGreaterThan(0);
-    expect(component.skinTypes).toContain('יבש');
+    expect(component.skinTypes).toContain('Dry');
   });
 
   it('should have correct hair color options', () => {
     expect(component.hairColors.length).toBeGreaterThan(0);
-    expect(component.hairColors).toContain('חום');
+    expect(component.hairColors).toContain('Brown');
   });
 });

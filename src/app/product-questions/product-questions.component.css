@@ -34,3 +34,11 @@ body {
   button:hover {
     background-color: #0056b3;
   }
+  
+  .logo {
+    width: 50px; /* Adjust size */
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}

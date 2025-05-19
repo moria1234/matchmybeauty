@@ -32,3 +32,18 @@ h2 {
     background-color: #ff1493;
   }
   
+  .logo {
+    width: 50px; /* Adjust size */
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+
+.logo {
+  width: 50px; /* Adjust size */
+  cursor: pointer;
+  position: absolute;
+  top: 10px;
+  left: 10px;
+}
