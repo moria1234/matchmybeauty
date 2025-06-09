@@ -1,30 +1,35 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
+import { FormsModule } from '@angular/forms'; // חובה בשביל ngModel
 import { RouterModule, Routes } from '@angular/router';
-import { AppComponent } from './app.component';
-import { ProductQuestionsComponent } from './product-questions/product-questions.component';
-import { ProductService } from './services/product.service';
-import { QuizComponent } from './quiz/quiz.component';
-import { HomeComponent } from './home/home.component';
 
-const appRoutes: Routes = [
-  { path: '', component: HomeComponent }, // Default route set to HomeComponent
-  { path: 'quiz', component: QuizComponent }, // Quiz route
-  { path: 'product-questions', component: ProductQuestionsComponent }, // Product questions route
-];
+import { AppComponent } from './app.component';
+import { HomeComponent } from './home/home.component';
+import { QuizComponent } from './quiz/quiz.component';
+import { ProductQuestionsComponent } from './product-questions/product-questions.component';
+import { ResultsComponent } from './results/results.component';
+import { ProfileComponent } from './profile/profile.component'; // לוודא שזה פה
+import { ProductService } from './services/product.service';
 
 @NgModule({
   declarations: [
     AppComponent,
-    ProductQuestionsComponent,
+    HomeComponent,
     QuizComponent,
-    HomeComponent, // הוספת רכיב HomeComponent
+    ProductQuestionsComponent,
+    ResultsComponent,
+    ProfileComponent, // להוסיף אותו כאן
   ],
   imports: [
     BrowserModule,
-    FormsModule,
-    RouterModule.forRoot(appRoutes),
+    FormsModule, // חובה
+    RouterModule.forRoot([
+      { path: '', component: HomeComponent },
+      { path: 'quiz', component: QuizComponent },
+      { path: 'product-questions', component: ProductQuestionsComponent },
+      { path: 'results', component: ResultsComponent },
+      { path: 'profile', component: ProfileComponent },
+    ]),
   ],
   providers: [ProductService],
   bootstrap: [AppComponent],

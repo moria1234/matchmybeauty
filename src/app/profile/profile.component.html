@@ -1,54 +1,72 @@
-<div *ngIf="!isLoggedIn && !isRegistering">
-    <h2>התחברות</h2>
-    <form (ngSubmit)="login(username.value, password.value)">
-      <label>שם משתמש:</label>
-      <input type="text" #username required />
-  
-      <label>סיסמה:</label>
-      <input type="password" #password required />
-  
-      <button type="submit">התחבר</button>
-    </form>
-    <button (click)="isRegistering = true">להרשמה</button>
-  </div>
-  
-  <div *ngIf="isRegistering">
-    <h2>הרשמה</h2>
-    <form (ngSubmit)="register(newUsername.value, newPassword.value)">
-      <label>שם משתמש חדש:</label>
-      <input type="text" #newUsername required />
-  
-      <label>סיסמה חדשה:</label>
-      <input type="password" #newPassword required />
-  
-      <button type="submit">הרשם</button>
-    </form>
-    <button (click)="isRegistering = false">ביטול</button>
-  </div>
-  
-  <div *ngIf="isLoggedIn">
-    <h2>פרופיל משתמש</h2>
-    <form (ngSubmit)="saveProfile()">
-      <label>סוג עור:</label>
-      <select [(ngModel)]="userProfile.skinType" name="skinType" required>
-        <option *ngFor="let type of skinTypes" [value]="type">{{ type }}</option>
-      </select>
-  
-      <label>גוון עור:</label>
-      <select [(ngModel)]="userProfile.skinTone" name="skinTone" required>
-        <option *ngFor="let tone of skinTones" [value]="tone">{{ tone }}</option>
-      </select>
-  
-      <label>צבע שיער:</label>
-      <select [(ngModel)]="userProfile.hairColor" name="hairColor" required>
-        <option *ngFor="let color of hairColors" [value]="color">{{ color }}</option>
-      </select>
-  
-      <label>צבע עיניים:</label>
-      <select [(ngModel)]="userProfile.eyeColor" name="eyeColor" required>
-        <option *ngFor="let color of eyeColors" [value]="color">{{ color }}</option>
-      </select>
-  
-      <button type="submit">שמור פרופיל</button>
-    </form>
-  </div>
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Profile page</title>
+        <link rel="stylesheet" href="profile.component.css">
+    </head>
+    <body>
+      <header>
+        <a [routerLink]="['/']">
+            <img src="logo.png" alt="Logo" class="logo">
+        </a>
+      </header>
+     <div *ngIf="!isLoggedIn && !isRegistering">
+        <h2>Login</h2>
+        <form (ngSubmit)="login(username.value, password.value)">
+          <label>Username:</label>
+          <input type="text" #username required />
+
+          <label>Password:</label>
+          <input type="password" #password required />
+
+          <button type="submit">Login</button>
+        </form>
+        <button (click)="isRegistering = true">Register</button>
+      </div>
+
+      <div *ngIf="isRegistering">
+        <h2>Register</h2>
+        <form (ngSubmit)="register(newUsername.value, newPassword.value)">
+          <label>New Username:</label>
+          <input type="text" #newUsername required />
+
+          <label>New Password:</label>
+          <input type="password" #newPassword required />
+
+          <button type="submit">Sign Up</button>
+        </form>
+        <button (click)="isRegistering = false">Cancel</button>
+      </div>
+
+      <div *ngIf="isLoggedIn">
+        <h2>User Profile</h2>
+        <form (ngSubmit)="saveProfile()">
+          <label>Skin Type:</label>
+          <select [(ngModel)]="userProfile.skinType" name="skinType" required>
+            <option *ngFor="let type of skinTypes" [value]="type">{{ type }}</option>
+          </select>
+
+          <label>Skin Tone:</label>
+          <select [(ngModel)]="userProfile.skinTone" name="skinTone" required>
+            <option *ngFor="let tone of skinTones" [value]="tone">{{ tone }}</option>
+          </select>
+
+          <label>Hair Color:</label>
+          <select [(ngModel)]="userProfile.hairColor" name="hairColor" required>
+            <option *ngFor="let color of hairColors" [value]="color">{{ color }}</option>
+          </select>
+
+          <label>Eye Color:</label>
+          <select [(ngModel)]="userProfile.eyeColor" name="eyeColor" required>
+            <option *ngFor="let color of eyeColors" [value]="color">{{ color }}</option>
+          </select>
+
+          <button type="submit">Save Profile</button>
+
+        </form>
+      </div>
+<button (click)="goToQuiz()">Go to Quiz</button>
+</body>
+</html>

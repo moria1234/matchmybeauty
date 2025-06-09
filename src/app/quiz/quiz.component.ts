@@ -29,6 +29,7 @@ export class QuizComponent {
 
   // Method to handle product type change
   onProductTypeChange(): void {
+
     console.log('Selected Product Type:', this.productType);
     this.productService.setSelectedProduct(this.productType); // Save selected product to the service
   }

@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+
 
 interface Product {
   image: string;
@@ -45,4 +47,10 @@ export class ResultsComponent {
       link: "https://www.example.com/mascara"
     }
   ];
+
+  constructor(private router: Router) {}
+
+  goBackToQuiz(): void {
+    this.router.navigate(['/quiz']);  // Navigate back to the quiz page (home)
+  }
 }
