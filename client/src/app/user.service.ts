@@ -42,6 +42,14 @@ export class UserService {
   login(credentials: any): Observable<any> {
     return this.http.post(`${environment.apiUrl}/login`, credentials);
   }
+  
+  setLoggedInUser(username: string): void {
+    localStorage.setItem('loggedInUser', username);
+  }
+
+  getLoggedInUser(): string | null {
+    return localStorage.getItem('loggedInUser');
+  }
 
   // Get user profile
   getProfile(): any {
@@ -62,5 +70,10 @@ export class UserService {
   setIsLoggedIn(status: boolean): void {
     this.isLoggedIn = status;
   }
+  
+  saveProfile(profileData: any): Observable<any> {
+  return this.http.post(`${this.apiUrl}/profile`, profileData);
+}
+
   
 }

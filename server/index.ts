@@ -5,6 +5,7 @@ import dotenv from 'dotenv';
 import { db } from './db';
 import bcrypt from 'bcrypt';
 
+
 dotenv.config();
 
 const app = express();
@@ -92,6 +93,27 @@ app.post('/api/login', async (req, res) => {
     res.status(500).json({ error: 'Server error' });
   }
 });
+app.post('/api/profile', async (req, res) => {
+  const { username, skinType, skinTone, eyeColor, hairColor } = req.body;
+
+  if (!username || !skinType || !skinTone || !eyeColor || !hairColor) {
+    return res.status(400).json({ error: 'Please provide all required fields' });
+  }
+
+  try {
+    await db.query(
+      'UPDATE users SET skinType = ?, skinTone = ?, eyeColor = ?, hairColor = ? WHERE username = ?',
+      [skinType, skinTone, eyeColor, hairColor, username]
+    );
+
+    res.status(200).json({ message: 'Profile updated successfully' });
+  } catch (err) {
+    console.error(err);
+    res.status(500).json({ error: 'Failed to update profile' });
+  }
+});
+
+
 
 // Start server
 app.listen(PORT, () => {

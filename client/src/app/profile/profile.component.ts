@@ -14,17 +14,17 @@ export class ProfileComponent {
   username = '';
   password = '';
 
-  /*userProfile = {
+  userProfile = {
     skinType: '',
     skinTone: '',
     hairColor: '',
     eyeColor: ''
   };
 
- /* skinTypes = ['Oily', 'Dry', 'Normal'];
+  skinTypes = ['Oily', 'Dry', 'Normal'];
   skinTones = ['Light', 'Medium', 'Dark'];
   hairColors = ['Blonde', 'Brown', 'Black', 'Red'];
-  eyeColors = ['Blue', 'Green', 'Brown', 'Gray'];*/
+  eyeColors = ['Blue', 'Green', 'Brown', 'Gray'];
 
   constructor(private router: Router, private userService: UserService) {}
 
@@ -70,8 +70,12 @@ export class ProfileComponent {
     login(): void {
     this.userService.login({ username: this.username, password: this.password }).subscribe({
       next: (response: any) => {
+        this.userService.setLoggedInUser(response.user.username);
+        this.userService.setProfile(response.user);
         alert('Login successful!');
         this.isLoggedIn = true;
+        // Save username for later use
+        this.userService.setLoggedInUser(response.user.username);
         this.router.navigate(['/quiz']); // move to quiz page
       },
       error: (err: any) => {
@@ -92,11 +96,30 @@ export class ProfileComponent {
     });
   }
 
-  /*saveProfile() {
-    console.log('Profile saved:', this.userProfile);
-    alert('Profile saved successfully!');
+  saveProfile(): void {
+  const username = this.userService.getLoggedInUser();
+
+  if (!username) {
+    alert('User not logged in');
+    return;
   }
-*/
+
+  const profileData = {
+    username,
+    ...this.userProfile
+  };
+
+  this.userService.saveProfile(profileData).subscribe({
+    next: () => {
+      alert('Profile saved successfully!');
+    },
+    error: (err: any) => {
+      alert(err.error?.error || 'Failed to save profile');
+    }
+  });
+}
+
+
   goToQuiz(): void {
     this.router.navigate(['/quiz']);
   }

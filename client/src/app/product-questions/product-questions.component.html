@@ -13,7 +13,7 @@
         </a>
     </header>
         <div class="container">
-            <h2>Qestions for <span id="productName"></span></h2>
+            <h2>Qestions for {{ selectedProduct }}</h2>
             <div *ngIf="questions && questions.length > 0; else noQuestions">
              <div *ngFor="let question of questions; index as i">
                 <label [for]="'question' + i">{{ i + 1 }}. {{ question.text }}</label>
@@ -44,6 +44,6 @@
                 <p>No questions available for this product.</p>
               </ng-template>
         </div>
-        <script type="module" src="product-questions.component.ts"></script>
+        <!--<script type="module" src="product-questions.component.ts"></script>-->
     </body>
 </html>
