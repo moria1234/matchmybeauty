@@ -9,7 +9,9 @@ import { QuizComponent } from './quiz/quiz.component';
 import { ProductQuestionsComponent } from './product-questions/product-questions.component';
 import { ResultsComponent } from './results/results.component';
 import { ProfileComponent } from './profile/profile.component'; // לוודא שזה פה
-import { ProductService } from './services/product.service';
+import { ProductService } from './services/product.service'
+import { HttpClientModule } from '@angular/common/http';
+
 
 @NgModule({
   declarations: [
@@ -23,6 +25,7 @@ import { ProductService } from './services/product.service';
   imports: [
     BrowserModule,
     FormsModule, // חובה
+    HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },
       { path: 'quiz', component: QuizComponent },
@@ -35,3 +38,4 @@ import { ProductService } from './services/product.service';
   bootstrap: [AppComponent],
 })
 export class AppModule {}
+

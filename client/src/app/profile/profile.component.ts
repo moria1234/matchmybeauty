@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-
+import { UserService } from 'client/src/app/user.service';
 
 @Component({
   selector: 'app-profile',
@@ -8,54 +8,97 @@ import { Router } from '@angular/router';
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent {
-  isLoggedIn = false; // Login status
-isRegistering = false; // Registration status
+  isLoggedIn = false; 
+  isRegistering = false;
 
-  users: { username: string; password: string }[] = [];
+  username = '';
+  password = '';
 
-  userProfile = {
+  /*userProfile = {
     skinType: '',
     skinTone: '',
     hairColor: '',
     eyeColor: ''
   };
 
-  skinTypes = ['Oily', 'Dry', 'Normal'];
-skinTones = ['Light', 'Medium', 'Dark'];
-hairColors = ['Blonde', 'Brown', 'Black', 'Red'];
-eyeColors = ['Blue', 'Green', 'Brown', 'Gray'];
+ /* skinTypes = ['Oily', 'Dry', 'Normal'];
+  skinTones = ['Light', 'Medium', 'Dark'];
+  hairColors = ['Blonde', 'Brown', 'Black', 'Red'];
+  eyeColors = ['Blue', 'Green', 'Brown', 'Gray'];*/
 
-  login(username: string, password: string) {
-    const user = this.users.find(user => user.username === username && user.password === password);
-    if (user) {
-      this.isLoggedIn = true;
-      alert('Login successful!');
-    } else {
-      alert('Invalid username or password');
-    }
+  constructor(private router: Router, private userService: UserService) {}
+
+  /*login() {
+    this.userService.login({ username: this.username, password: this.password }).subscribe({
+      next: (response: any) => {
+        alert('Login successful!');
+        this.isLoggedIn = true;
+        this.userProfile = {
+          skinType: response.user.skinType,
+          skinTone: response.user.skinTone,
+          hairColor: response.user.hairColor,
+          eyeColor: response.user.eyeColor,
+        };
+      },
+      error: (err: any) => {
+        alert(err.error?.error || 'Invalid username or password');
+      }
+    });
+  } 
+
+  register() {
+    const registerData = {
+      username: this.username,
+      password: this.password,
+      skinType: '',
+      skinTone: '',
+      hairColor: '',
+      eyeColor: ''
+    };
+
+    this.userService.register(registerData).subscribe({
+      next: () => {
+        alert('Registration successful! You can now log in.');
+        this.isRegistering = false;
+      },
+      error: (err: any) => {
+        alert(err.error?.error || 'Registration failed');
+      }
+    });
+  }*/
+
+    login(): void {
+    this.userService.login({ username: this.username, password: this.password }).subscribe({
+      next: (response: any) => {
+        alert('Login successful!');
+        this.isLoggedIn = true;
+        this.router.navigate(['/quiz']); // move to quiz page
+      },
+      error: (err: any) => {
+        alert(err.error?.error || 'Login failed');
+      }
+    });
+  }
+  
+  register(): void {
+    this.userService.register({ username: this.username, password: this.password }).subscribe({
+      next: () => {
+        alert('Registration successful!');
+        this.isRegistering = false;
+      },
+      error: (err: any) => {
+        alert(err.error?.error || 'Registration failed');
+      }
+    });
   }
 
-  register(username: string, password: string) {
-    const userExists = this.users.some(user => user.username === username);
-    if (userExists) {
-      alert('Username already exists');
-    } else {
-      this.users.push({ username, password });
-      alert('Registration successful! You can now log in.');
-      this.isRegistering = false;
-    }
-  }
-
-  saveProfile() {
+  /*saveProfile() {
     console.log('Profile saved:', this.userProfile);
     alert('Profile saved successfully!');
   }
-
-  constructor(private router: Router) {}
-
-  
-
+*/
   goToQuiz(): void {
-    this.router.navigate(['/quiz']);  // Navigate to quiz page directly if needed
+    this.router.navigate(['/quiz']);
   }
 }
+

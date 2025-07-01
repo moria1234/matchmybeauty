@@ -30,6 +30,7 @@
             "scripts": []
           },
           "configurations": {
+            
             "production": {
               "budgets": [
                 {
@@ -43,7 +44,13 @@
                   "maximumError": "4kb"
                 }
               ],
-              "outputHashing": "all"
+              "outputHashing": "all",
+              "fileReplacements": [
+                {
+                  "replace": "client/src/environments/environment.ts",
+                  "with": "client/src/environments/environment.prod.ts"
+                }
+  ]
             },
             "development": {
               "buildOptimizer": false,

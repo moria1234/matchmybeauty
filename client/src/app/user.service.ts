@@ -1,31 +1,66 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { Observable } from 'rxjs';
 
+interface RegisterData {
+  username: string;
+  password: string;
+  skinType: string;
+  skinTone: string;
+  hairColor: string;
+  eyeColor: string;
+}
+
+interface LoginData {
+  username: string;
+  password: string;
+}
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
-  private userProfile: any = null; // שמירת נתוני הפרופיל
-  private isLoggedIn: boolean = false; // בדיקה אם המשתמש מחובר
+  private userProfile: any = null;
+  private isLoggedIn = false;
 
-  constructor() {}
+  private apiUrl = environment.apiUrl;
 
-  // קבלת פרופיל המשתמש
+  constructor(private http: HttpClient) {}
+
+ // Call backend register API
+ /* register(userData: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/register`, userData);
+  }*/
+
+    register(userData: { username: string, password: string }): Observable<any> {
+  return this.http.post(`${environment.apiUrl}/register`, {
+    username: userData.username,
+    password: userData.password
+  });
+}
+  // Call backend login API
+  login(credentials: any): Observable<any> {
+    return this.http.post(`${environment.apiUrl}/login`, credentials);
+  }
+
+  // Get user profile
   getProfile(): any {
     return this.userProfile;
   }
 
-  // שמירת פרופיל המשתמש
+  // Set user profile
   setProfile(profile: any): void {
     this.userProfile = profile;
   }
 
-  // סטטוס חיבור משתמש
+  // Get login status
   getIsLoggedIn(): boolean {
     return this.isLoggedIn;
   }
 
-  // עדכון סטטוס חיבור
+  // Set login status
   setIsLoggedIn(status: boolean): void {
     this.isLoggedIn = status;
   }
+  
 }
