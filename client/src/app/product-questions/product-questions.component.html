@@ -21,7 +21,6 @@
         <div *ngFor="let question of questions; index as i" class="form-group">
           <label [for]="'question' + i">{{ i + 1 }}. {{ question.text }}</label>
 
-          <!-- Dropdown if options exist -->
           <select
             *ngIf="question.options && question.options.length > 0"
             [id]="'question'+i"
@@ -32,8 +31,7 @@
               {{ option }}
             </option>
           </select>
-
-          <!-- Textarea fallback -->
+          
           <textarea
             *ngIf="!question.options || question.options.length === 0"
             [id]="'question' + i"

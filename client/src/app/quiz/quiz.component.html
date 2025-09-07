@@ -17,7 +17,7 @@
     <div class="quiz-card">
       <h2>Quiz</h2>
       <form>
-        <!-- Product Type -->
+  
         <div class="form-group">
           <h3>Select Product Type:</h3>
           <select [(ngModel)]="productType" name="productType" (ngModelChange)="onProductTypeChange()">
@@ -26,7 +26,6 @@
           </select>
         </div>
 
-        <!-- Eye Color -->
         <div class="form-group">
           <h3>What is your eye color?</h3>
           <select [(ngModel)]="eyeColor" name="eyeColor">
@@ -35,7 +34,6 @@
           </select>
         </div>
 
-        <!-- Skin Tone -->
         <div class="form-group">
           <h3>What is your skin tone?</h3>
           <select [(ngModel)]="skinTone" name="skinTone">
@@ -44,7 +42,6 @@
           </select>
         </div>
 
-        <!-- Skin Type -->
         <div class="form-group">
           <h3>What is your skin type?</h3>
           <select [(ngModel)]="skinType" name="skinType">
@@ -53,7 +50,6 @@
           </select>
         </div>
 
-        <!-- Hair Color -->
         <div class="form-group">
           <h3>What is your hair color?</h3>
           <select [(ngModel)]="hairColor" name="hairColor">
@@ -62,7 +58,6 @@
           </select>
         </div>
 
-        <!-- Buttons -->
         <div class="buttons">
           <button type="button" (click)="saveUserProfile()">Save Profile</button>
           <button type="button" routerLink="/product-questions">Continue ></button>

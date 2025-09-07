@@ -9,7 +9,6 @@
   --color-btn-hover: #c1614c;
 }
 
-/* כללי */
 body {
   font-family: 'Raleway', sans-serif;
   margin: 0;
@@ -34,7 +33,6 @@ body {
   transform: rotate(-10deg) scale(1.1);
 }
 
-/* כרטיסים */
 .profile-page {
   display: flex;
   flex-direction: column;
@@ -59,13 +57,11 @@ body {
   transform: translateY(-5px);
 }
 
-/* כותרות */
 .profile-card h2 {
   color: var(--color-bg4);
   margin-bottom: 20px;
 }
 
-/* תוויות ושדות */
 label {
   display: block;
   font-weight: 600;
@@ -88,7 +84,6 @@ input:focus {
   box-shadow: 0 0 0 3px rgba(216,124,99,0.3);
 }
 
-/* כפתורים */
 button, .toggle-button {
   background-color: var(--color-btn);
   color: white;
@@ -108,7 +103,6 @@ button:hover, .toggle-button:hover {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
-/* רספונסיביות */
 @media (min-width: 500px) {
   .profile-page {
     padding: 40px;

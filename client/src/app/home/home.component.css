@@ -1,16 +1,15 @@
-/* פלטת צבעים */
+
 :root {
-  --color-bg1: #fffbff;   /* רקע כללי */
-  --color-bg2: #ebd8d0;   /* קופסאות */
-  --color-bg3: #eac9c1;   /* צבע משנה */
-  --color-bg4: #d3ab9e;   /* הדגשה / כותרות */
+  --color-bg1: #fffbff;  
+  --color-bg2: #ebd8d0;  
+  --color-bg3: #eac9c1; 
+  --color-bg4: #d3ab9e;  
   
   --color-text: #4b3f36;
   --color-btn: #d87c63;
   --color-btn-hover: #c1614c;
 }
 
-/* כללי */
 body {
   font-family: 'Raleway', sans-serif;
   margin: 0;
@@ -34,7 +33,6 @@ body {
   transform: rotate(-10deg) scale(1.1);
 }
 
-/* כרטיס מרכזי */
 .intro-card {
   background-color: var(--color-bg2);
   padding: 40px;
@@ -49,7 +47,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* כותרת + טקסט */
 .intro-card h1 {
   color: var(--color-text);
   font-size: 2rem;
@@ -61,7 +58,6 @@ body {
   margin-bottom: 30px;
 }
 
-/* כפתורים */
 .buttons {
   display: flex;
   flex-direction: column;
@@ -84,7 +80,6 @@ button.start-button:hover, button.profile-button:hover {
   box-shadow: 0 6px 12px rgba(0,0,0,0.2);
 }
 
-/* רספונסיביות */
 @media (min-width: 500px) {
   .buttons {
     flex-direction: row;

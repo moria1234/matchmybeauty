@@ -1,16 +1,15 @@
-/* ====== פלטת צבעים אחידה ====== */
+
 :root {
-  --color-bg1: #fffbff;       /* רקע כללי */
-  --color-bg2: #ebd8d0;       /* רקע קופסאות / טפסים */
-  --color-bg3: #eac9c1;       /* צבע משנה לרקע / גבולות */
-  --color-bg4: #d3ab9e;       /* הדגשה / כותרות קטנות */
+  --color-bg1: #fffbff;     
+  --color-bg2: #ebd8d0;      
+  --color-bg3: #eac9c1;      
+  --color-bg4: #d3ab9e;      
   
-  --color-text: #4b3f36;      /* טקסט ראשי כהה */
-  --color-btn:  #d3ab9e;       /* כפתורים עיקריים */
-  --color-btn-hover: #d3ab9e;/* כפתור hover */
+  --color-text: #4b3f36;    
+  --color-btn:  #d3ab9e;      
+  --color-btn-hover: #d3ab9e;
 }
 
-/* ====== עיצוב כללי ====== */
 body {
   font-family: 'Raleway', sans-serif;
   background-color: var(--color-bg1);
@@ -20,7 +19,6 @@ body {
   box-sizing: border-box;
 }
 
-/* ====== מרכז כל העמודים ====== */
 :host, .page-center {
   display: flex;
   flex-direction: column;
@@ -29,14 +27,12 @@ body {
   min-height: 100vh;
 }
 
-/* ====== כותרות ====== */
 h1, h2, h3 {
   color: var(--color-text);
   margin: 0 0 15px 0;
   text-align: center;
 }
 
-/* ====== קונטיינרים / כרטיסים / טפסים ====== */
 .container, .quiz-container, .product-card, .result-item, form {
   background-color: var(--color-bg2);
   border-radius: 20px;
@@ -49,7 +45,6 @@ h1, h2, h3 {
   align-items: center;
 }
 
-/* ====== תוויות ====== */
 label {
   font-weight: 600;
   display: block;
@@ -57,7 +52,6 @@ label {
   color: var(--color-text);
 }
 
-/* ====== שדות קלט / טקסט / select ====== */
 input, select, textarea {
   width: 100%;
   margin: 10px 0 20px 0;
@@ -75,7 +69,6 @@ input:focus, select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(216,124,99,0.3);
 }
 
-/* ====== כפתורים אחידים ====== */
 button, .button, .buy-button {
   background-color: var(--color-btn);
   color: white;
@@ -102,13 +95,11 @@ button:focus, .button:focus, .buy-button:focus {
   box-shadow: 0 0 0 3px var(--color-bg4);
 }
 
-/* ====== תמונות בכרטיסים ====== */
 .product-card img, .result-item img {
   width: 100%;
   border-radius: 15px;
 }
 
-/* ====== טקסט בכרטיסים ====== */
 .product-card h3, .result-title {
   font-size: 1.2em;
   margin: 10px 0 5px 0;
@@ -120,7 +111,6 @@ button:focus, .button:focus, .buy-button:focus {
   font-size: 1em;
 }
 
-/* ====== לוגו ====== */
 .logo {
   width: 150px;
   cursor: pointer;
@@ -134,7 +124,6 @@ button:focus, .button:focus, .buy-button:focus {
   transform: rotate(-10deg) scale(1.1);
 }
 
-/* ====== רשימות גריד ====== */
 .product-grid, .results-container {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
@@ -142,13 +131,11 @@ button:focus, .button:focus, .buy-button:focus {
   padding: 20px;
 }
 
-/* ====== hover עבור כרטיסים ====== */
 .product-card:hover, .result-item:hover {
   transform: translateY(-5px);
   box-shadow: 0 12px 24px rgba(0,0,0,0.15);
 }
 
-/* ====== פוטר ====== */
 .footer {
   text-align: center;
   padding: 15px;

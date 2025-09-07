@@ -9,7 +9,6 @@
   --color-btn-hover: #c1614c;
 }
 
-/* כללי */
 body {
   font-family: 'Raleway', sans-serif;
   margin: 0;
@@ -34,7 +33,6 @@ body {
   transform: rotate(-10deg) scale(1.1);
 }
 
-/* כרטיס מרכזי */
 .questions-page {
   display: flex;
   flex-direction: column;
@@ -58,7 +56,6 @@ body {
   transform: translateY(-5px);
 }
 
-/* כותרות */
 .questions-card h2 {
   color: var(--color-bg4);
   margin-bottom: 25px;
@@ -71,7 +68,6 @@ label {
   color: var(--color-text);
 }
 
-/* שדות קלט */
 select, textarea {
   width: 100%;
   padding: 12px;
@@ -89,7 +85,6 @@ select:focus, textarea:focus {
   box-shadow: 0 0 0 3px rgba(216,124,99,0.3);
 }
 
-/* כפתורים */
 .buttons {
   display: flex;
   justify-content: center;

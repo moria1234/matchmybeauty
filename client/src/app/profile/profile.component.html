@@ -13,7 +13,6 @@
         </a>
       </header>
     
-<!-- Login Section -->
 <div *ngIf="!isLoggedIn && !isRegistering">
   <h2>Login</h2>
   <form (ngSubmit)="login()">
@@ -28,7 +27,6 @@
   <button (click)="isRegistering = true">Register</button>
 </div>
 
-<!-- Register Section -->
 <div *ngIf="isRegistering">
   <h2>Register</h2>
   <form (ngSubmit)="register()">
@@ -43,7 +41,6 @@
   <button (click)="isRegistering = false">Cancel</button>
 </div>
 
-<!-- Logged In Section -->
 <div *ngIf="isLoggedIn">
   <h2>Welcome, {{ username }}!</h2>
   <button (click)="goToQuiz()">Go to Quiz</button>
