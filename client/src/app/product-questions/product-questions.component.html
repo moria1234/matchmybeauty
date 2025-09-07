@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Product Questionnaire</title>
+  <link rel="stylesheet" href="product-questions.component.css">
+</head>
+<body>
+  <header>
+    <a routerLink="/">
+      <img src="assets/logo.jpg" alt="Logo" class="logo">
+    </a>
+  </header>
+
+  <main class="questions-page">
+    <div class="questions-card">
+      <h2>Questions for {{ selectedProduct }}</h2>
+
+      <div *ngIf="questions && questions.length > 0; else noQuestions">
+        <div *ngFor="let question of questions; index as i" class="form-group">
+          <label [for]="'question' + i">{{ i + 1 }}. {{ question.text }}</label>
+
+          <!-- Dropdown if options exist -->
+          <select
+            *ngIf="question.options && question.options.length > 0"
+            [id]="'question'+i"
+            [(ngModel)]="answers[i]"
+          >
+            <option value="" disabled selected>Select an option</option>
+            <option *ngFor="let option of question.options" [value]="option">
+              {{ option }}
+            </option>
+          </select>
+
+          <!-- Textarea fallback -->
+          <textarea
+            *ngIf="!question.options || question.options.length === 0"
+            [id]="'question' + i"
+            [(ngModel)]="answers[i]"
+            placeholder="Type your answer here..."
+          ></textarea>
+        </div>
+
+        <div class="buttons">
+          <button type="button" (click)="submitAnswers()">Submit</button>
+        </div>
+      </div>
+
+      <ng-template #noQuestions>
+        <p>No questions available for this product.</p>
+      </ng-template>
+    </div>
+  </main>
+</body>
+</html>
