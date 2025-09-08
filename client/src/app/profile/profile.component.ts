@@ -1,20 +1,23 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { UserService } from 'client/src/app/user.service';
+import { UserService, ProfileData } from '../services/user.service';
+
+
 
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
-export class ProfileComponent {
+export class ProfileComponent implements OnInit {
   isLoggedIn = false; 
   isRegistering = false;
 
   username = '';
   password = '';
 
-  userProfile = {
+  userProfile: ProfileData = {
+    username: '',
     skinType: '',
     skinTone: '',
     hairColor: '',
@@ -28,100 +31,76 @@ export class ProfileComponent {
 
   constructor(private router: Router, private userService: UserService) {}
 
-  /*login() {
-    this.userService.login({ username: this.username, password: this.password }).subscribe({
-      next: (response: any) => {
-        alert('Login successful!');
-        this.isLoggedIn = true;
-        this.userProfile = {
-          skinType: response.user.skinType,
-          skinTone: response.user.skinTone,
-          hairColor: response.user.hairColor,
-          eyeColor: response.user.eyeColor,
-        };
-      },
-      error: (err: any) => {
-        alert(err.error?.error || 'Invalid username or password');
-      }
-    });
-  } 
+ ngOnInit(): void {
+  const username = this.userService.getLoggedInUser();
 
-  register() {
-    const registerData = {
-      username: this.username,
-      password: this.password,
-      skinType: '',
-      skinTone: '',
-      hairColor: '',
-      eyeColor: ''
-    };
+  if (!username) {
+    // User is not logged in → redirect to login/register page
+    this.router.navigate(['/register']); // replace '/register' with your actual route
+    return; // stop further execution
+  }
 
-    this.userService.register(registerData).subscribe({
-      next: () => {
-        alert('Registration successful! You can now log in.');
-        this.isRegistering = false;
-      },
-      error: (err: any) => {
-        alert(err.error?.error || 'Registration failed');
-      }
-    });
-  }*/
+  this.isLoggedIn = true;
 
-    login(): void {
+  // Load profile if user is logged in
+  this.userService.getProfile(username).subscribe({
+    next: (profile: any) => {
+      this.userProfile = {
+        username: profile.username || username,
+        skinType: profile.skinType || '',
+        skinTone: profile.skinTone || '',
+        hairColor: profile.hairColor || '',
+        eyeColor: profile.eyeColor || ''
+      };
+      this.userService.setProfile(this.userProfile);
+    },
+    error: (err) => console.error('Failed to load profile:', err)
+  });
+}
+
+
+  login(): void {
     this.userService.login({ username: this.username, password: this.password }).subscribe({
       next: (response: any) => {
         this.userService.setLoggedInUser(response.user.username);
         this.userService.setProfile(response.user);
         alert('Login successful!');
         this.isLoggedIn = true;
-        // Save username for later use
-        this.userService.setLoggedInUser(response.user.username);
-        this.router.navigate(['/quiz']); // move to quiz page
+        this.router.navigate(['/quiz']);
       },
-      error: (err: any) => {
-        alert(err.error?.error || 'Login failed');
-      }
+      error: (err: any) => alert(err.error?.error || 'Login failed')
     });
   }
-  
+
   register(): void {
     this.userService.register({ username: this.username, password: this.password }).subscribe({
       next: () => {
         alert('Registration successful!');
         this.isRegistering = false;
       },
-      error: (err: any) => {
-        alert(err.error?.error || 'Registration failed');
-      }
+      error: (err: any) => alert(err.error?.error || 'Registration failed')
     });
   }
 
   saveProfile(): void {
-  const username = this.userService.getLoggedInUser();
-
-  if (!username) {
-    alert('User not logged in');
-    return;
-  }
-
-  const profileData = {
-    username,
-    ...this.userProfile
-  };
-
-  this.userService.saveProfile(profileData).subscribe({
-    next: () => {
-      alert('Profile saved successfully!');
-    },
-    error: (err: any) => {
-      alert(err.error?.error || 'Failed to save profile');
+    const username = this.userService.getLoggedInUser();
+    if (!username) {
+      alert('User not logged in');
+      return;
     }
-  });
-}
 
+    const profileData: ProfileData = { ...this.userProfile, username };
+
+    this.userService.saveProfile(profileData).subscribe({
+      next: () => {
+        alert('Profile saved successfully!');
+        this.userService.setProfile(profileData);
+      },
+      error: (err: any) => alert(err.error?.error || 'Failed to save profile')
+    });
+  }
 
   goToQuiz(): void {
     this.router.navigate(['/quiz']);
   }
 }
-

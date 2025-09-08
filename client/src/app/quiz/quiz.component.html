@@ -9,7 +9,7 @@
     <body>
       <header>
         <a [routerLink]="['/']">
-            <img src="logo.png" alt="Logo" class="logo">
+            <img src="assets/logo.jpg" alt="Logo" class="logo">
         </a>
     </header>
         <main>
@@ -62,7 +62,7 @@
                     </div>
 
                     <!-- Submit Button -->
-                     <button type="button" (click)="saveUserProfile()">Save Profile</button>
+                     <button *ngIf="isLoggedIn" type="button" (click)="saveUserProfile()">Save Profile</button>
                     <button type="button" routerLink="/product-questions">Continue ></button>
                 </form>
             </div>

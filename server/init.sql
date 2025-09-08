@@ -23,3 +23,6 @@ CREATE TABLE IF NOT EXISTS profiles (
   eye_color  VARCHAR(30),
   FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE
 );
+
+ALTER TABLE users CHANGE COLUMN password password_hash VARCHAR(255) NOT NULL;
+
