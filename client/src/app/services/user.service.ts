@@ -15,8 +15,8 @@ export interface ProfileData {
   providedIn: 'root'
 })
 export class UserService {
-  private loggedInUser: string | null = null;
-  private profile: ProfileData | null = null;
+  private loggedInUser: string | null = null; // login session in memory
+  private profile: ProfileData | null = null; // cached profile
 
   constructor(private http: HttpClient) {}
 
@@ -41,11 +41,11 @@ export class UserService {
   // === LOGIN STATE ===
   setLoggedInUser(username: string) {
     this.loggedInUser = username;
-    localStorage.setItem('loggedInUser', username);
+    sessionStorage.setItem('loggedInUser', username); // only lasts until browser closes
   }
 
   getLoggedInUser(): string | null {
-    return this.loggedInUser || localStorage.getItem('loggedInUser');
+    return this.loggedInUser || sessionStorage.getItem('loggedInUser');
   }
 
   isUserLoggedIn(): boolean {
@@ -54,13 +54,16 @@ export class UserService {
 
   // === PROFILE CACHE ===
   setProfile(profile: ProfileData) {
-    this.profile = profile;
-    localStorage.setItem('profile', JSON.stringify(profile));
+    this.profile = profile; // cached in memory only
   }
 
   getProfileData(): ProfileData | null {
-    if (this.profile) return this.profile;
-    const stored = localStorage.getItem('profile');
-    return stored ? JSON.parse(stored) : null;
+    return this.profile; // returns cached profile or null
+  }
+
+  logout(): void {
+    this.loggedInUser = null;
+    sessionStorage.removeItem('loggedInUser');
+    this.profile = null;
   }
 }

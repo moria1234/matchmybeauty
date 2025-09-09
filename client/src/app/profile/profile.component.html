@@ -14,7 +14,7 @@
   </header>
 
   <!-- Login Section -->
-  <div *ngIf="!isLoggedIn && !isRegistering">
+  <div *ngIf="!userService.getLoggedInUser() && !isRegistering">
     <h2>Login</h2>
     <form (ngSubmit)="login()">
       <label for="login-username">Username:</label>
@@ -44,8 +44,11 @@
   </div>
 
   <!-- Logged In Section -->
-  <div *ngIf="isLoggedIn">
-    <h2>Welcome, {{ username }}!</h2>
+  <div *ngIf="userService.getLoggedInUser()">
+    <h2>Welcome, {{ userService.getLoggedInUser() }}!</h2>
+
+    <!-- Logout Button -->
+    <button (click)="logout()">Logout</button>
 
     <!-- Profile Form -->
     <div class="profile-form">

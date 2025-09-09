@@ -2,15 +2,12 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { UserService, ProfileData } from '../services/user.service';
 
-
-
 @Component({
   selector: 'app-profile',
   templateUrl: './profile.component.html',
   styleUrls: ['./profile.component.css']
 })
 export class ProfileComponent implements OnInit {
-  isLoggedIn = false; 
   isRegistering = false;
 
   username = '';
@@ -29,35 +26,17 @@ export class ProfileComponent implements OnInit {
   hairColors = ['Blonde', 'Brown', 'Black', 'Red'];
   eyeColors = ['Blue', 'Green', 'Brown', 'Gray'];
 
-  constructor(private router: Router, private userService: UserService) {}
+  constructor(private router: Router, public userService: UserService) {}
 
- ngOnInit(): void {
-  const username = this.userService.getLoggedInUser();
+  ngOnInit(): void {
+    const username = this.userService.getLoggedInUser();
 
-  if (!username) {
-    // User is not logged in → redirect to login/register page
-    this.router.navigate(['/register']); // replace '/register' with your actual route
-    return; // stop further execution
+    if (username) {
+      // User is already logged in → redirect to quiz
+      alert('You are already logged in!');
+      this.router.navigate(['/quiz']);
+    }
   }
-
-  this.isLoggedIn = true;
-
-  // Load profile if user is logged in
-  this.userService.getProfile(username).subscribe({
-    next: (profile: any) => {
-      this.userProfile = {
-        username: profile.username || username,
-        skinType: profile.skinType || '',
-        skinTone: profile.skinTone || '',
-        hairColor: profile.hairColor || '',
-        eyeColor: profile.eyeColor || ''
-      };
-      this.userService.setProfile(this.userProfile);
-    },
-    error: (err) => console.error('Failed to load profile:', err)
-  });
-}
-
 
   login(): void {
     this.userService.login({ username: this.username, password: this.password }).subscribe({
@@ -65,7 +44,6 @@ export class ProfileComponent implements OnInit {
         this.userService.setLoggedInUser(response.user.username);
         this.userService.setProfile(response.user);
         alert('Login successful!');
-        this.isLoggedIn = true;
         this.router.navigate(['/quiz']);
       },
       error: (err: any) => alert(err.error?.error || 'Login failed')
@@ -98,6 +76,12 @@ export class ProfileComponent implements OnInit {
       },
       error: (err: any) => alert(err.error?.error || 'Failed to save profile')
     });
+  }
+
+  logout(): void {
+    this.userService.logout();
+    alert('You have been logged out!');
+    this.router.navigate(['/register']);
   }
 
   goToQuiz(): void {

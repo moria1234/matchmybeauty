@@ -2,7 +2,6 @@ import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service'; 
 import { UserService, ProfileData } from '../services/user.service';
 
-
 @Component({
   selector: 'app-quiz',
   templateUrl: './quiz.component.html',
@@ -25,7 +24,7 @@ export class QuizComponent implements OnInit {
   hairColors: string[] = ['Brown', 'Black', 'Blonde', 'Red'];
 
   isLoggedIn: boolean = false;
-  
+
   constructor(
     private productService: ProductService,
     private userService: UserService
@@ -33,28 +32,23 @@ export class QuizComponent implements OnInit {
 
   ngOnInit(): void {
     const username = this.userService.getLoggedInUser();
-    if (username) {
-      this.isLoggedIn = true;
-
-      const profile = this.userService.getProfileData();
-      if (profile) {
-        this.eyeColor = profile.eyeColor;
-        this.skinTone = profile.skinTone;
-        this.skinType = profile.skinType;
-        this.hairColor = profile.hairColor;
-      }
-
-      this.userService.getProfile(username).subscribe(
-        (profileFromDb: ProfileData) => {
-          this.eyeColor = profileFromDb.eyeColor;
-          this.skinTone = profileFromDb.skinTone;
-          this.skinType = profileFromDb.skinType;
-          this.hairColor = profileFromDb.hairColor;
-          this.userService.setProfile(profileFromDb);
-        },
-        (err: any) => console.error('Failed to fetch profile:', err)
-      );
+    if (!username) {
+      alert('You are not logged in. Your profile changes will not be saved.');
+      return;
     }
+
+    this.isLoggedIn = true;
+
+    this.userService.getProfile(username).subscribe(
+      (profile: ProfileData) => {
+        this.eyeColor = profile.eyeColor || '';
+        this.skinTone = profile.skinTone || '';
+        this.skinType = profile.skinType || '';
+        this.hairColor = profile.hairColor || '';
+        this.userService.setProfile(profile);
+      },
+      (err: any) => console.error('Failed to fetch profile:', err)
+    );
   }
 
   onProductTypeChange(): void {
@@ -83,5 +77,11 @@ export class QuizComponent implements OnInit {
       },
       error: (err: any) => alert('Failed to save profile: ' + err.message)
     });
+  }
+
+  logout(): void {
+    this.userService.logout();
+    // Redirect to login/register
+    window.location.href = '/register';
   }
 }
