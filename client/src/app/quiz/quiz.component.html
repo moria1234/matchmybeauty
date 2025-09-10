@@ -1,71 +1,73 @@
 <!DOCTYPE html>
 <html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>Quiz page</title>
-        <link rel="stylesheet" href="quiz.component.css">
-    </head>
-    <body>
-      <header>
-        <a [routerLink]="['/']">
-            <img src="assets/logo.jpg" alt="Logo" class="logo">
-        </a>
-    </header>
-        <main>
-            <div class="container">
-                <h2>Quiz</h2>
-                <form>
-                    <!-- Product Type Selection -->
-                    <div class="form-group">
-                        <h3>Select Product Type:</h3>
-                        <select [(ngModel)]="productType" name="productType" (ngModelChange)="onProductTypeChange()">
-                            <option value="" disabled selected>Select a product</option>
-                            <option *ngFor="let option of productOptions" [ngValue]="option">{{ option }}</option>
-                        </select>
-                    </div>
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Quiz page</title>
+  <link rel="stylesheet" href="quiz.component.css">
+</head>
+<body>
+  <header>
+    <a [routerLink]="['/']">
+      <img src="assets/logo.jpg" alt="Logo" class="logo">
+    </a>
+  </header>
+  <main>
+    <div class="container">
+      <h2>Quiz</h2>
+      <form>
+        <!-- Product Type Selection -->
+        <div class="form-group">
+          <h3>Select Product Type:</h3>
+          <select [(ngModel)]="productType" name="productType" (ngModelChange)="onProductTypeChange()">
+            <option value="" disabled selected>Select a product</option>
+            <option *ngFor="let option of productOptions" [ngValue]="option">{{ option }}</option>
+          </select>
+        </div>
 
-                    <!-- Eye Color Selection -->
-                    <div class="form-group">
-                        <h3>What is your eye color?</h3>
-                        <select [(ngModel)]="eyeColor" name="eyeColor">
-                            <option value="" disabled selected>Select eye color</option>
-                            <option *ngFor="let option of eyeColors" [ngValue]="option">{{ option }}</option>
-                        </select>
-                    </div>
+        <!-- Eye Color Selection -->
+        <div class="form-group">
+          <h3>What is your eye color?</h3>
+          <select [(ngModel)]="eyeColor" name="eyeColor">
+            <option value="" disabled selected>Select eye color</option>
+            <option *ngFor="let option of eyeColors" [ngValue]="option">{{ option }}</option>
+          </select>
+        </div>
 
-                    <!-- Skin Tone Selection -->
-                    <div class="form-group">
-                        <h3>What is your skin tone?</h3>
-                        <select [(ngModel)]="skinTone" name="skinTone">
-                            <option value="" disabled selected>Select skin tone</option>
-                            <option *ngFor="let option of skinTones" [ngValue]="option">{{ option }}</option>
-                        </select>
-                    </div>
+        <!-- Skin Tone Selection -->
+        <div class="form-group">
+          <h3>What is your skin tone?</h3>
+          <select [(ngModel)]="skinTone" name="skinTone">
+            <option value="" disabled selected>Select skin tone</option>
+            <option *ngFor="let option of skinTones" [ngValue]="option">{{ option }}</option>
+          </select>
+        </div>
 
-                    <!-- Skin Type Selection -->
-                    <div class="form-group">
-                        <h3>What is your skin type?</h3>
-                        <select [(ngModel)]="skinType" name="skinType">
-                            <option value="" disabled selected>Select skin type</option>
-                            <option *ngFor="let option of skinTypes" [ngValue]="option">{{ option }}</option>
-                        </select>
-                    </div>
+        <!-- Skin Type Selection -->
+        <div class="form-group">
+          <h3>What is your skin type?</h3>
+          <select [(ngModel)]="skinType" name="skinType">
+            <option value="" disabled selected>Select skin type</option>
+            <option *ngFor="let option of skinTypes" [ngValue]="option">{{ option }}</option>
+          </select>
+        </div>
 
-                    <!-- Hair Color Selection -->
-                    <div class="form-group">
-                        <h3>What is your hair color?</h3>
-                        <select [(ngModel)]="hairColor" name="hairColor">
-                            <option value="" disabled selected>Select hair color</option>
-                            <option *ngFor="let option of hairColors" [ngValue]="option">{{ option }}</option>
-                        </select>
-                    </div>
+        <!-- Hair Color Selection -->
+        <div class="form-group">
+          <h3>What is your hair color?</h3>
+          <select [(ngModel)]="hairColor" name="hairColor">
+            <option value="" disabled selected>Select hair color</option>
+            <option *ngFor="let option of hairColors" [ngValue]="option">{{ option }}</option>
+          </select>
+        </div>
 
-                    <!-- Submit Button -->
-                     <button *ngIf="isLoggedIn" type="button" (click)="saveUserProfile()">Save Profile</button>
-                    <button type="button" routerLink="/product-questions">Continue ></button>
-                </form>
-            </div>
-        </main>   
-    </body>
+        <!-- Save Profile Button -->
+        <button *ngIf="isLoggedIn" type="button" (click)="saveUserProfile()">Save Profile</button>
+
+        <!-- Continue Button -->
+        <button type="button" (click)="goNext()">Continue ></button>
+      </form>
+    </div>
+  </main>
+</body>
 </html>

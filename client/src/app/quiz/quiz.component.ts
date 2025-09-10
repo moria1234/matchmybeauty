@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ProductService } from '../services/product.service'; 
 import { UserService, ProfileData } from '../services/user.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-quiz',
@@ -27,7 +28,8 @@ export class QuizComponent implements OnInit {
 
   constructor(
     private productService: ProductService,
-    private userService: UserService
+    private userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -67,7 +69,7 @@ export class QuizComponent implements OnInit {
       eyeColor: this.eyeColor,
       skinTone: this.skinTone,
       skinType: this.skinType,
-      hairColor: this.hairColor,
+      hairColor: this.hairColor
     };
 
     this.userService.saveProfile(profileData).subscribe({
@@ -81,7 +83,24 @@ export class QuizComponent implements OnInit {
 
   logout(): void {
     this.userService.logout();
-    // Redirect to login/register
     window.location.href = '/register';
+  }
+
+  isQuizComplete(): boolean {
+    return !!(
+      this.productType &&
+      this.eyeColor &&
+      this.skinTone &&
+      this.skinType &&
+      this.hairColor
+    );
+  }
+
+  goNext(): void {
+    if (!this.isQuizComplete()) {
+      alert('Please answer all questions before continuing.');
+      return;
+    }
+    this.router.navigate(['/product-questions']);
   }
 }
