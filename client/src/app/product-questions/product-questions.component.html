@@ -1,0 +1,52 @@
+<header class="header">
+  <a routerLink="/">
+    <img src="assets/logo.jpg" alt="Logo" class="logo" />
+  </a>
+</header>
+
+<div class="container">
+  <h2>Questions for {{ selectedProduct }}</h2>
+
+  <div *ngIf="questions && questions.length > 0; else noQuestions">
+    <div *ngFor="let question of questions; index as i">
+      <label [for]="'question' + i">
+        {{ i + 1 }}. {{ question.text }}
+      </label>
+
+      <!-- אם יש אפשרויות – תיבת בחירה -->
+      <select
+        *ngIf="question.options && question.options.length > 0"
+        [id]="'question' + i"
+        [(ngModel)]="answers[i]"
+        [name]="'q' + i"
+      >
+        <option [ngValue]="">Select an option</option>
+        <option *ngFor="let option of question.options" [ngValue]="option">
+          {{ option }}
+        </option>
+      </select>
+
+      <!-- אם אין אפשרויות – תיבת טקסט -->
+      <textarea
+        *ngIf="!question.options || question.options.length === 0"
+        [id]="'question' + i"
+        [(ngModel)]="answers[i]"
+        [name]="'q' + i"
+        placeholder="Type your answer here..."
+      ></textarea>
+    </div>
+
+    <!-- חשוב: type="button" כדי למנוע submit של דפדפן -->
+    <button
+      type="button"
+      (click)="onGetRecommendations()"
+      [disabled]="loading"
+    >
+      {{ loading ? 'Loading…' : 'Show Results' }}
+    </button>
+  </div>
+
+  <ng-template #noQuestions>
+    <p>No questions available for this product.</p>
+  </ng-template>
+</div>
