@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Profile page</title>
+  <link rel="stylesheet" href="profile.component.css" />
+</head>
+<body>
+  <header>
+    <a [routerLink]="['/']">
+      <img src="assets/logo.jpg" alt="Logo" class="logo" />
+    </a>
+  </header>
+
+  <!-- Login Section -->
+  <div *ngIf="!userService.getLoggedInUser() && !isRegistering">
+    <h2>Login</h2>
+    <form (ngSubmit)="login()">
+      <label for="login-username">Username:</label>
+      <input type="text" id="login-username" [(ngModel)]="username" name="username" required />
+
+      <label for="login-password">Password:</label>
+      <input type="password" id="login-password" [(ngModel)]="password" name="password" required />
+
+      <button type="submit">Login</button>
+    </form>
+    <button (click)="isRegistering = true">Register</button>
+  </div>
+
+  <!-- Register Section -->
+  <div *ngIf="isRegistering">
+    <h2>Register</h2>
+    <form (ngSubmit)="register()">
+      <label for="register-username">New Username:</label>
+      <input type="text" id="register-username" [(ngModel)]="username" name="newUsername" required />
+
+      <label for="register-password">New Password:</label>
+      <input type="password" id="register-password" [(ngModel)]="password" name="newPassword" required />
+
+      <button type="submit">Sign Up</button>
+    </form>
+    <button (click)="isRegistering = false">Cancel</button>
+  </div>
+
+  <!-- Logged In Section -->
+  <div *ngIf="userService.getLoggedInUser()">
+    <h2>Welcome, {{ userService.getLoggedInUser() }}!</h2>
+
+    <!-- Logout Button -->
+    <button (click)="logout()">Logout</button>
+
+    <!-- Profile Form -->
+    <div class="profile-form">
+      <!-- Skin Type -->
+      <label for="skinType">Skin Type:</label>
+      <select
+        id="skinType"
+        [(ngModel)]="userProfile.skinType"
+        name="skinType"
+        aria-label="Select your skin type"
+      >
+        <option [ngValue]="''">Select...</option>
+        <option *ngFor="let t of skinTypes" [ngValue]="t">{{ t }}</option>
+      </select>
+
+      <!-- Skin Tone -->
+      <label for="skinTone">Skin Tone:</label>
+      <select
+        id="skinTone"
+        [(ngModel)]="userProfile.skinTone"
+        name="skinTone"
+        aria-label="Select your skin tone"
+      >
+        <option [ngValue]="''">Select...</option>
+        <option *ngFor="let t of skinTones" [ngValue]="t">{{ t }}</option>
+      </select>
+
+      <!-- Hair Color -->
+      <label for="hairColor">Hair Color:</label>
+      <select
+        id="hairColor"
+        [(ngModel)]="userProfile.hairColor"
+        name="hairColor"
+        aria-label="Select your hair color"
+      >
+        <option [ngValue]="''">Select...</option>
+        <option *ngFor="let c of hairColors" [ngValue]="c">{{ c }}</option>
+      </select>
+
+      <!-- Eye Color -->
+      <label for="eyeColor">Eye Color:</label>
+      <select
+        id="eyeColor"
+        [(ngModel)]="userProfile.eyeColor"
+        name="eyeColor"
+        aria-label="Select your eye color"
+      >
+        <option [ngValue]="''">Select...</option>
+        <option *ngFor="let c of eyeColors" [ngValue]="c">{{ c }}</option>
+      </select>
+
+      <button (click)="saveProfile()">Save Profile</button>
+    </div>
+
+    <button (click)="goToQuiz()">Go to Quiz</button>
+  </div>
+</body>
+</html>

@@ -1,0 +1,65 @@
+<header class="header">
+  <a routerLink="/">
+    <img src="assets/logo.jpg" alt="Logo" class="logo" />
+  </a>
+</header>
+
+<main>
+  <div class="container">
+    <h2>Quiz</h2>
+
+    <form novalidate>
+      <!-- Product Type Selection -->
+      <div class="form-group">
+        <h3>Select Product Type:</h3>
+        <select [(ngModel)]="productType" name="productType" (ngModelChange)="onProductTypeChange()">
+          <option *ngFor="let option of productOptions" [ngValue]="option">
+            {{ option | titlecase }}
+          </option>
+        </select>
+      </div>
+
+      <!-- Eye Color Selection -->
+      <div class="form-group">
+        <h3>What is your eye color?</h3>
+        <select [(ngModel)]="eyeColor" name="eyeColor">
+          <option *ngFor="let option of eyeColors" [ngValue]="option">{{ option }}</option>
+        </select>
+      </div>
+
+      <!-- Skin Tone Selection -->
+      <div class="form-group">
+        <h3>What is your skin tone?</h3>
+        <select [(ngModel)]="skinTone" name="skinTone">
+          <option *ngFor="let option of skinTones" [ngValue]="option">{{ option }}</option>
+        </select>
+      </div>
+
+      <!-- Skin Type Selection -->
+      <div class="form-group">
+        <h3>What is your skin type?</h3>
+        <select [(ngModel)]="skinType" name="skinType">
+          <option *ngFor="let option of skinTypes" [ngValue]="option">{{ option }}</option>
+        </select>
+      </div>
+
+      <!-- Hair Color Selection -->
+      <div class="form-group">
+        <h3>What is your hair color?</h3>
+        <select [(ngModel)]="hairColor" name="hairColor">
+          <option *ngFor="let option of hairColors" [ngValue]="option">{{ option }}</option>
+        </select>
+      </div>
+
+     <!-- Buttons Section -->
+<div class="buttons">
+  <!-- Save Profile Button -->
+  <button *ngIf="isLoggedIn" type="button" (click)="saveUserProfile()">Save Profile</button>
+
+  <!-- Continue Button -->
+  <button type="button" (click)="goNext()">Continue &gt;</button>
+</div>
+<!--  -->
+    </form>
+  </div>
+</main>
