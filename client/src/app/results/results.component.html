@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Results Page</title>
+  <link rel="stylesheet" href="results.component.css" />
+</head>
+<body>
+  <header>
+    <a [routerLink]="['/']">
+      <img src="assets/logo.jpg" alt="Logo" class="logo" />
+    </a>
+  </header>
+
+  <main class="results-page">
+
+    <section class="results-header">
+      <h1>Your Personalized Makeup Matches</h1>
+      <p>Here are the top products just for you!</p>
+    </section>
+
+    <div *ngIf="loading">Loading products...</div>
+    <div *ngIf="error">{{ error }}</div>
+
+    <section class="results-container" *ngIf="!loading && products.length > 0">
+      <div *ngFor="let product of products" class="result-item">
+        <div class="result-content">
+          <h3 class="result-title">{{ product.name }}</h3>
+          <p *ngIf="product.brand">{{ product.brand }}</p>
+          <p *ngIf="product.shade">{{ product.shade }}</p>
+          <p class="result-price">{{ product.price }}</p>
+        </div>
+        <a [href]="product.link" target="_blank" rel="noopener" class="buy-button">Buy Now</a>
+      </div>
+    </section>
+
+    <div *ngIf="!loading && products.length === 0">
+      No products found.
+    </div>
+
+    <div class="buttons" style="text-align:center; margin-top: 10px;">
+      <button (click)="goBackToQuiz()">Back to Quiz</button>
+    </div>
+  </main>
+</body>
+</html>
