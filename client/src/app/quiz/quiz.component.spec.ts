@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { FormsModule } from '@angular/forms';  // ייבוא של FormsModule לשימוש ב-ngModel
+import { FormsModule } from '@angular/forms';  
 import { QuizComponent } from './quiz.component';
 
 describe('QuizComponent', () => {
@@ -9,7 +9,7 @@ describe('QuizComponent', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
       declarations: [QuizComponent],
-      imports: [FormsModule]  // הוספנו את FormsModule
+      imports: [FormsModule]  
     });
     fixture = TestBed.createComponent(QuizComponent);
     component = fixture.componentInstance;

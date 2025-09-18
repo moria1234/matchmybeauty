@@ -21,7 +21,6 @@ export class ProfileComponent implements OnInit {
     eyeColor: ''
   };
 
-  // רשימות לבחירה – כמו ב-QUIZ
   skinTypes = ['Dry', 'Oily', 'Normal', 'Combination'];
   skinTones = ['Light', 'Medium', 'Dark'];
   hairColors = ['Brown', 'Black', 'Blonde', 'Red'];

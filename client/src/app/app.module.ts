@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms'; // חובה בשביל ngModel
+import { FormsModule } from '@angular/forms'; 
 import { RouterModule, Routes } from '@angular/router';
 
 import { AppComponent } from './app.component';
@@ -8,7 +8,7 @@ import { HomeComponent } from './home/home.component';
 import { QuizComponent } from './quiz/quiz.component';
 import { ProductQuestionsComponent } from './product-questions/product-questions.component';
 import { ResultsComponent } from './results/results.component';
-import { ProfileComponent } from './profile/profile.component'; // לוודא שזה פה
+import { ProfileComponent } from './profile/profile.component'; 
 import { ProductService } from './services/product.service'
 import { HttpClientModule } from '@angular/common/http';
 
@@ -20,11 +20,11 @@ import { HttpClientModule } from '@angular/common/http';
     QuizComponent,
     ProductQuestionsComponent,
     ResultsComponent,
-    ProfileComponent, // להוסיף אותו כאן
+    ProfileComponent, 
   ],
   imports: [
     BrowserModule,
-    FormsModule, // חובה
+    FormsModule, 
     HttpClientModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent },

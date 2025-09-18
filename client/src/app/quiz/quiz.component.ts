@@ -9,13 +9,11 @@ import { UserService, ProfileData } from '../services/user.service';
   styleUrls: ['./quiz.component.css'],
 })
 export class QuizComponent implements OnInit {
-  // Product
+  
   productType: string = '';
-  // עודכן לפי הבקשה: Mascara, Eyeshadow, Lips, Eyebrow, Primer, Eyeliner
-  // נשמרים באותיות קטנות כדי להעביר ל־routing/שרת בפורמט אחיד; בתצוגה נשתמש ב־titlecase pipe.
+  
   productOptions: string[] = ['foundation', 'concealer', 'powder', 'bronzer', 'blush','mascara', 'eyeshadow', 'lips', 'eyebrow', 'primer', 'eyeliner'];
 
-  // Profile fields + options
   eyeColor: string = '';
   eyeColors: string[] = ['Brown', 'Green', 'Blue', 'Gray'];
 
@@ -39,7 +37,6 @@ export class QuizComponent implements OnInit {
   ngOnInit(): void {
     const username = this.userService.getLoggedInUser();
     if (!username) {
-      // מאפשר למלא את השאלון גם בלי התחברות, אך מזהיר שלא יישמר
       alert('You are not logged in. Your profile changes will not be saved.');
       this.isLoggedIn = false;
       return;
@@ -47,19 +44,16 @@ export class QuizComponent implements OnInit {
 
     this.isLoggedIn = true;
 
-    // 1) נסה קודם מה־cache (כולל localStorage דרך ה־service)
     const cached: ProfileData | null = this.userService.getProfileData();
     if (cached) {
       this.applyProfile(cached);
     } else {
-      // 2) אם אין cache—משוך מהשרת ופרה-פיל
       this.userService.fetchProfile(username).subscribe({
         next: (profile: ProfileData) => {
           this.applyProfile(profile);
         },
         error: (err: unknown) => {
           console.error('Failed to fetch profile:', err);
-          // במקרה של שגיאה—נשאיר ריק, שהמשתמש/ת תמלא ידנית
         },
       });
     }
@@ -70,7 +64,6 @@ export class QuizComponent implements OnInit {
     this.skinTone = p.skinTone || '';
     this.skinType = p.skinType || '';
     this.hairColor = p.hairColor || '';
-    // אם בעתיד יישמר productType בפרופיל—ניתן למלא גם אותו כאן.
   }
 
   onProductTypeChange(): void {
@@ -94,7 +87,6 @@ export class QuizComponent implements OnInit {
 
     this.userService.saveProfile(profileData).subscribe({
       next: (saved: ProfileData) => {
-        // saveProfile כבר מעדכן cache + localStorage דרך ה-service
         alert('Profile saved successfully!');
         this.userService.setProfile(saved ?? profileData);
       },
@@ -131,7 +123,6 @@ export class QuizComponent implements OnInit {
       alert('Please answer all questions before continuing.');
       return;
     }
-    // נווט לעמוד השאלות עם המוצר שנבחר + סוג העור מהשאלון (ל־Primer אין שאלות נוספות והוא יתבסס על זה)
     this.router.navigate(['/product-questions'], {
       queryParams: {
         product: this.productType,

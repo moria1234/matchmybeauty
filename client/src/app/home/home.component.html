@@ -17,8 +17,6 @@
     <h1>{{ title }}</h1>
     <button routerLink="/quiz" class="start-button">START HERE ></button>
     <button routerLink="/profile" class="profile-button">Profile</button>
-
-    <!-- Logout button (only shown when logged in) -->
     <button *ngIf="isLoggedIn" (click)="logout()" class="logout-button">Logout</button>
   </div>
 </body>

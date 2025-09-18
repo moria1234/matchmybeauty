@@ -14,17 +14,14 @@
   </header>
 
   <main class="results-page">
-    <!-- כותרת + טקסט (ללא כרטיסיית רקע) -->
     <section class="results-header">
       <h1>Your Personalized Makeup Matches</h1>
       <p>Here are the top products just for you!</p>
     </section>
 
-    <!-- מצבי טעינה/שגיאה -->
     <div *ngIf="loading">Loading products...</div>
     <div *ngIf="error">{{ error }}</div>
 
-    <!-- כרטיסי התוצאות -->
     <section class="results-container" *ngIf="!loading && products.length > 0">
       <div *ngFor="let product of products" class="result-item">
         <div class="result-content">
@@ -37,7 +34,6 @@
       </div>
     </section>
 
-    <!-- הודעה אם אין מוצרים -->
     <div *ngIf="!loading && products.length === 0">
       No products found.
     </div>

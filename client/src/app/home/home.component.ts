@@ -21,6 +21,6 @@ export class HomeComponent implements OnInit {
   logout(): void {
     this.userService.logout();
     this.isLoggedIn = false;
-    this.router.navigate(['/register']); // Redirect to login/register after logout
+    this.router.navigate(['/register']); 
   }
 }

@@ -8,7 +8,6 @@ interface QuestionSpec {
   options?: string[];
 }
 
-// שאלות משותפות
 const commonQuestions = {
   finish: {
     text: 'What level of finish would you like?',
@@ -16,7 +15,6 @@ const commonQuestions = {
   },
 };
 
-// קבוצות שאלות מוכנות
 const faceQuestions: QuestionSpec[] = [
   { text: 'What level of coverage would you like?', options: ['Light', 'Medium', 'Full'] },
   commonQuestions.finish,
@@ -28,19 +26,15 @@ const cheeksQuestions: QuestionSpec[] = [
   commonQuestions.finish,
 ];
 
-// מפה מאוחדת של כל המוצרים והשאלות
-// ❗ הוסר Eye Color מ-eyeshadow, והוסר Hair Color מ-eyebrow
 const productQuestionsMap: Record<string, QuestionSpec[]> = {
-  // פנים
+  
   foundation: faceQuestions,
   concealer: faceQuestions,
   powder: faceQuestions,
 
-  // לחיים
   bronzer: cheeksQuestions,
   blush: cheeksQuestions,
 
-  // עיניים / שפתיים / גבות
   mascara: [
     { text: 'Is it waterproof?', options: ['Yes', 'No'] },
     { text: 'Color', options: ['Black', 'Brown', 'Blue'] },
@@ -49,7 +43,7 @@ const productQuestionsMap: Record<string, QuestionSpec[]> = {
   ],
   eyeshadow: [
     { text: 'Longevity', options: ['Low', 'Medium', 'High'] },
-    // { text: 'Eye Color', ... }  <-- הוסר: נשתמש במה שמגיע מה-Quiz
+
     { text: 'Preferred Palette', options: ['Neutrals', 'Warm', 'Cool', 'Smokey', 'Colorful'] },
   ],
   lips: [
@@ -64,7 +58,7 @@ const productQuestionsMap: Record<string, QuestionSpec[]> = {
   eyeliner: [
     { text: 'Formula Type', options: ['Liquid', 'Pen (Felt-tip)', 'Gel'] },
   ],
-  // ל-PRIMER אין שאלות נוספות - נשען על הנתונים מה-Quiz
+  
   primer: [],
 };
 
@@ -79,7 +73,7 @@ export class ProductQuestionsComponent implements OnInit {
   answers: string[] = [];
   loading: boolean = false;
 
-  // ערכים שמגיעים מה-Quiz
+  
   skinTypeFromQuiz: string | null = null;
   eyeColorFromQuiz: string | null = null;
   hairColorFromQuiz: string | null = null;
@@ -91,7 +85,6 @@ export class ProductQuestionsComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    // קבלת product + skinType + eyeColor + hairColor מה־query params
     this.route.queryParamMap.subscribe((params) => {
       this.selectedProduct = (params.get('product') || '').toLowerCase().trim();
       this.skinTypeFromQuiz = (params.get('skinType') || '').trim() || null;
@@ -119,7 +112,6 @@ export class ProductQuestionsComponent implements OnInit {
   }
 
   private buildAnswersForRequest(): string[] {
-    // עבור PRIMER – אין שאלות נוספות, אז בונים answers מינימלי מנתוני ה-Quiz
     if (this.selectedProduct === 'primer') {
       const a: string[] = [];
       if (this.skinTypeFromQuiz) a.push(this.skinTypeFromQuiz);
@@ -128,18 +120,15 @@ export class ProductQuestionsComponent implements OnInit {
       return a;
     }
 
-    // לשאר המוצרים – נאסוף את התשובות של המשתמש מהטופס
     return (this.answers || []).map((x) => (x ?? '').toString().trim()).filter(Boolean);
   }
 
   onGetRecommendations(): void {
-    // חובה להשלים תשובות בטופס לכל המוצרים פרט ל-PRIMER
     if (this.selectedProduct !== 'primer' && this.answers.some((a) => !a)) {
       alert('Please answer all questions before submitting.');
       return;
     }
 
-    // בדיקות נתוני Quiz הדרושים למוצרים מסוימים
     if (this.selectedProduct === 'eyeshadow' && !this.eyeColorFromQuiz) {
       alert('Missing eye color from Quiz. Please go back and fill it.');
       return;
@@ -149,10 +138,8 @@ export class ProductQuestionsComponent implements OnInit {
       return;
     }
 
-    // לבנות answers לשיגור ל-ML
     const builtAnswers = this.buildAnswersForRequest();
 
-    // ה-ML דורש answers שאינו ריק; עבור PRIMER נוודא שלפחות skinType קיים
     if (!builtAnswers.length) {
       if (this.selectedProduct === 'primer') {
         alert('Missing skin type from Quiz. Please go back and select your skin type.');
@@ -164,7 +151,7 @@ export class ProductQuestionsComponent implements OnInit {
 
     const payload: any = {
       productType: this.selectedProduct,
-      answers: builtAnswers, // >>> חשוב: מערך מחרוזות, לא אובייקט
+      answers: builtAnswers, 
       extra: {} as Record<string, any>,
     };
 

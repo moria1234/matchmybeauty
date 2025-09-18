@@ -28,7 +28,6 @@
     <button (click)="isRegistering = true">Register</button>
   </div>
 
-  <!-- Register Section -->
   <div *ngIf="isRegistering">
     <h2>Register</h2>
     <form (ngSubmit)="register()">
@@ -43,16 +42,12 @@
     <button (click)="isRegistering = false">Cancel</button>
   </div>
 
-  <!-- Logged In Section -->
   <div *ngIf="userService.getLoggedInUser()">
     <h2>Welcome, {{ userService.getLoggedInUser() }}!</h2>
 
-    <!-- Logout Button -->
     <button (click)="logout()">Logout</button>
 
-    <!-- Profile Form -->
     <div class="profile-form">
-      <!-- Skin Type -->
       <label for="skinType">Skin Type:</label>
       <select
         id="skinType"
@@ -64,7 +59,6 @@
         <option *ngFor="let t of skinTypes" [ngValue]="t">{{ t }}</option>
       </select>
 
-      <!-- Skin Tone -->
       <label for="skinTone">Skin Tone:</label>
       <select
         id="skinTone"
@@ -76,7 +70,6 @@
         <option *ngFor="let t of skinTones" [ngValue]="t">{{ t }}</option>
       </select>
 
-      <!-- Hair Color -->
       <label for="hairColor">Hair Color:</label>
       <select
         id="hairColor"
@@ -87,8 +80,7 @@
         <option [ngValue]="''">Select...</option>
         <option *ngFor="let c of hairColors" [ngValue]="c">{{ c }}</option>
       </select>
-
-      <!-- Eye Color -->
+      
       <label for="eyeColor">Eye Color:</label>
       <select
         id="eyeColor"

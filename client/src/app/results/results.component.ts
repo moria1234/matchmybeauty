@@ -25,7 +25,6 @@ export class ResultsComponent implements OnInit {
   constructor(private productService: ProductService, private router: Router) {}
 
   ngOnInit(): void {
-    // טוען מוצרים שנשמרו בשירות
     const cachedProducts = this.productService.getProducts();
 
     if (cachedProducts && cachedProducts.length > 0) {
